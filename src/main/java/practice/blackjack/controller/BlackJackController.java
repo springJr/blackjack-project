@@ -18,4 +18,5 @@ public class BlackJackController {
 	}
 
 	// 내가왔다
+	// 나도 왔음
 }
