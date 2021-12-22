@@ -16,4 +16,6 @@ public class BlackJackController {
 		this.gameService = gameService;
 		this.memberService = memberService;
 	}
+
+	// 내가왔다
 }
