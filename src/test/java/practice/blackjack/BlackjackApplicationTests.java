@@ -10,4 +10,8 @@ class BlackjackApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void newTest() {
+		System.out.println("Here i am!");
+	}
 }
