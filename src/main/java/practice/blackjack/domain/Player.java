@@ -24,16 +24,6 @@ public class Player implements BlackJackMember {
 	public void addCard() {
 		playerCards.addCard();
 	}
-
-	@Override
-	public void isBust() {
-
-	}
-
-	@Override
-	public void isBlackjack() {
-
-	}
 }
 
 

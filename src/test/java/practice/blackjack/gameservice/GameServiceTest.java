@@ -26,4 +26,9 @@ public class GameServiceTest {
 			.get(0).getCards()
 			.getSize()).isEqualTo(2);
 	}
+
+	@Test
+	void HitTest() {
+		
+	}
 }

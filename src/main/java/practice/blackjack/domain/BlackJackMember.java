@@ -8,8 +8,6 @@ import practice.blackjack.domain.card.Cards;
 
 public interface BlackJackMember {
 	void addCard();
-	void isBust();
-	void isBlackjack();
 	void shouldGetCard(); //return boolean
 	Cards getCards();
 
