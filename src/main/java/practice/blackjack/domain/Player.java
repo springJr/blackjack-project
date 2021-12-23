@@ -6,12 +6,34 @@ import practice.blackjack.domain.card.Cards;
 
 @Getter
 @Setter
-public class Player extends BlackJackMember {
+public class Player implements BlackJackMember {
 	private String userName;
 	private Sexs userSex;
-	private Cards playerCards;
+	private Cards playerCards = new Cards();
+
 	@Override
-	void shouldGetCard() {
+	public void shouldGetCard() {
+
+	}
+
+	@Override
+	public Cards getCards() {
+		return playerCards;
+	}
+
+	public void addCard() {
+		playerCards.addCard();
+	}
+
+	@Override
+	public void isBust() {
+
+	}
+
+	@Override
+	public void isBlackjack() {
 
 	}
 }
+
+

@@ -1,16 +1,31 @@
 package practice.blackjack.domain;
 
-import practice.blackjack.domain.card.Card;
 import practice.blackjack.domain.card.Cards;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Dealer extends BlackJackMember {
-	Cards dealerCards;
+public class Dealer implements BlackJackMember {
+	Cards dealerCards = new Cards();
 
 	@Override
-	void shouldGetCard() {
+	public void shouldGetCard() {
+
+	}
+
+	@Override
+	public Cards getCards() {
+		return dealerCards;
+	}
+
+	public void addCard() {
+		dealerCards.addCard();
+	}
+
+	@Override
+	public void isBust() {
+
+	}
+
+	@Override
+	public void isBlackjack() {
 
 	}
 }
