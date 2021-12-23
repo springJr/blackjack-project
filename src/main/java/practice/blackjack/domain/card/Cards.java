@@ -19,4 +19,13 @@ public class Cards {
                 .findAny();
         return true; // 미완성
     }
+
+    public void addCard() {
+        Card card = CardDummy.drawCard();
+        cards.add(card);
+    }
+
+    public int getSize() {
+        return cards.size();
+    }
 }

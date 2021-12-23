@@ -1,19 +1,20 @@
 package practice.blackjack.repository;
 
-import org.springframework.stereotype.Repository;
-import practice.blackjack.domain.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import lombok.Getter;
+import practice.blackjack.domain.BlackJackMember;
+import practice.blackjack.domain.Player;
+
+@Getter
 @Repository
 public class GameRepository {
-	List<Player> players = new ArrayList<>();
+	private List<BlackJackMember> players = new ArrayList<>();
 
-	public void addPlayers(Player player) {
+	public void addPlayers(BlackJackMember player) {
 		players.add(player);
 	}
-
-
-
 }
