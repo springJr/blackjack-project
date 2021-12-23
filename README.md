@@ -4,13 +4,17 @@
 
 >- 사용자에게 이름 입력 받기
 >
->  >PostMapping을 통해 저장
+> >PostMapping을 통해 저장
 >
 >- 성별 selection으로 변경
 >
->  > 남 / 여 선택
+>  > - Enum 으로 성별(Sex) 추가
+>
 
 >- 입력받은 정보로 Player 객체 생성
+>
+>  > - 생성하기 위해 객체에 인스턴스 변수 (userName, userSex) 추가
+>
 >- Repository에 저장
 
 - ### 게임 실행
