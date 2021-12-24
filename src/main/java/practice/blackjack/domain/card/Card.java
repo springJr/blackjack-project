@@ -8,4 +8,12 @@ public class Card {
 		this.cardSymbol = cardSymbol;
 		this.cardValue = cardValue;
 	}
+
+	public String getCardSymbol() {
+		return cardSymbol.getSymbolEmoji();
+	}
+
+	public int getCardValue() {
+		return cardValue.getValue();
+	}
 }

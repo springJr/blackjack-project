@@ -3,7 +3,7 @@ package practice.blackjack.domain;
 import practice.blackjack.domain.card.Cards;
 
 public class Dealer implements BlackJackMember {
-	Cards dealerCards = new Cards();
+	private Cards dealerCards = new Cards();
 
 	@Override
 	public void shouldGetCard() {

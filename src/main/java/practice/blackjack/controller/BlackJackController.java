@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import practice.blackjack.domain.Dealer;
 import practice.blackjack.domain.Player;
 import practice.blackjack.domain.Sexs;
 import practice.blackjack.service.GameService;
@@ -55,9 +57,12 @@ public class BlackJackController {
 
 	// 게임진행
 	@GetMapping("/play")
-	public String playGame() {
+	public String playGame(Model model) {
 		log.info("Controller: playGame");
 		// 로직
+		gameService.initializeGame();
+		model.addAttribute("players",memberService.getPlayerMembers());
+		model.addAttribute("dealer",memberService.getDealer());
 		return "/blackjack/play";
 	}
 
