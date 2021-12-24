@@ -5,11 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import practice.blackjack.domain.BlackJackMember;
 import practice.blackjack.domain.Dealer;
 import practice.blackjack.domain.Player;
 import practice.blackjack.domain.Sexs;
@@ -52,6 +50,7 @@ public class BlackJackController {
 		log.info("| userName={}",player.getUserName());
 		log.info("| userSex={}",player.getUserSex());
 		memberService.savePlayer(player);
+		gameService.initializeGame();
 		return "redirect:/blackjack/play";
 	}
 
@@ -60,10 +59,17 @@ public class BlackJackController {
 	public String playGame(Model model) {
 		log.info("Controller: playGame");
 		// 로직
-		gameService.initializeGame();
 		model.addAttribute("players",memberService.getPlayerMembers());
 		model.addAttribute("dealer",memberService.getDealer());
 		return "/blackjack/play";
+	}
+
+	@PostMapping("/play/hit")
+	public String playHit(@RequestParam("player") Player player) {
+		log.info("Controller: hit");
+		// 로직
+		gameService.hit(player); // 여기서 에러가남.. 객체를 못받아옴
+		return "redirect:/blackjack/play";
 	}
 
 	// 결과창

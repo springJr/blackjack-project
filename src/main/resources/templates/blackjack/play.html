@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
+    <form action=".html" th:action="@{/play/hit}" method="post">
     <div class="playerState" th:each="player : ${players}">
         <h3 th:text="${player.userName}"> user name</h3>
         <h3 th:if="${player.userSex.getDescription().equals('남성')}"> 🙆🏻‍♂️ ️</h3>
@@ -25,7 +26,14 @@
                 <span class="cardSymbol" th:text="${card.getCardValue()}">value</span>
             </div>
         </div>
+
+        <div>
+           <button type="submit" class="addTodo">HIT!</button>
+        </div>
     </div>
+    </form>
+
+
     <button th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">결과 보기</button>
 </body>
 </html>
