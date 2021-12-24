@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.Getter;
+
+@Getter
 public class Cards {
     List<Card> cards = new ArrayList<>();
 
