@@ -19,13 +19,4 @@ public class Dealer implements BlackJackMember {
 		dealerCards.addCard();
 	}
 
-	@Override
-	public void isBust() {
-
-	}
-
-	@Override
-	public void isBlackjack() {
-
-	}
 }

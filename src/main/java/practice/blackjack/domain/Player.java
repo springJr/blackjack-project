@@ -2,8 +2,10 @@ package practice.blackjack.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import practice.blackjack.domain.card.Cards;
 
+@Slf4j
 @Getter
 @Setter
 public class Player implements BlackJackMember {
@@ -23,16 +25,7 @@ public class Player implements BlackJackMember {
 
 	public void addCard() {
 		playerCards.addCard();
-	}
-
-	@Override
-	public void isBust() {
-
-	}
-
-	@Override
-	public void isBlackjack() {
-
+		log.info("playerCard size={}", playerCards.getSize());
 	}
 }
 
