@@ -48,6 +48,7 @@ public class BlackJackController {
 		log.info("Controller: userForm-post");
 		log.info("| userName={}",player.getUserName());
 		log.info("| userSex={}",player.getUserSex());
+		log.info("| gameAmount={}",player.getGameAmount());
 		memberService.savePlayer(player);
 		return "redirect:/blackjack/play";
 	}
@@ -57,7 +58,8 @@ public class BlackJackController {
 	public String playGame(Model model) {
 		log.info("Controller: playGame");
 		// 로직
-		model.addAttribute("dealer",memberService.getDealer());
+		model.addAttribute("dealerCards",memberService.getDealer().getCards());
+		model.addAttribute("player",memberService.getPlayer());
 		model.addAttribute("playerGames",memberService.getPlayerGames());
 		return "/blackjack/play";
 	}
@@ -67,7 +69,16 @@ public class BlackJackController {
 		BlackJackGame blackJackGame = gameService.findGameById(gameId);
 		blackJackGame.isBlackJack();
 		model.addAttribute("blackJackGame", blackJackGame);
+		model.addAttribute("blackJackGameCards", blackJackGame.getCards());
+		//model.addAttribute("isBust",gameService.isBustGameById(gameId));
 		return "blackjack/gameEach";
+	}
+
+	@GetMapping("/play/{gameId}/hit")
+	public String gameEachHit(@PathVariable Long gameId) {
+		log.info("asdfsadfasdfasdfasdf");
+		//gameService.hitGameById(gameId);
+		return "redirect:/blackjack/play/{gameId}";
 	}
 
 	// 결과창

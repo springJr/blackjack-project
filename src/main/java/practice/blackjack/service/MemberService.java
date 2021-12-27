@@ -35,4 +35,7 @@ public class MemberService {
 		return gameRepository.findAllGames();
 
 	}
+	public Player getPlayer() {
+		return gameRepository.getPlayer();
+	}
 }

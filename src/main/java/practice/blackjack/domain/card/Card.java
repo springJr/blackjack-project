@@ -1,8 +1,5 @@
 package practice.blackjack.domain.card;
 
-import lombok.Getter;
-
-@Getter
 public class Card {
 	CardSymbol cardSymbol;
 	CardValue cardValue;
