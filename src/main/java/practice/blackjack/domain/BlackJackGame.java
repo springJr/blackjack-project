@@ -53,6 +53,7 @@ public class BlackJackGame {
         int cardsSum = getCardsSum();
         if (cardsSum > 21) {
             checkIsFinished();
+            this.isFinished = true;
             return true;
         }
         return false;

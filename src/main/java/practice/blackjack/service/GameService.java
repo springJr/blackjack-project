@@ -39,5 +39,13 @@ public class GameService {
 		return blackJackGame.isBust();
 	}
 
+	public boolean allGameFinished() {
+		for (BlackJackGame game : gameRepository.findAllGames()) {
+			if (!game.isFinished()){
+				return false;
+			}
+		}
+		return true;
+	}
 
 }

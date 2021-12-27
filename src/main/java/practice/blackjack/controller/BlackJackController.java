@@ -61,6 +61,7 @@ public class BlackJackController {
 		model.addAttribute("dealerCards",memberService.getDealer().getCards());
 		model.addAttribute("player",memberService.getPlayer());
 		model.addAttribute("playerGames",memberService.getPlayerGames());
+		model.addAttribute("dealerTurn", gameService.allGameFinished());
 		return "/blackjack/play";
 	}
 
