@@ -21,3 +21,4 @@ public class Card {
 		return cardValue.getMessage();
 	}
 }
+

@@ -11,13 +11,15 @@
     <div class="dealerCardContainer">
         <div class="dealerCard" th:each="card : ${blackJackGameCards}">
             <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
-            <span class="cardValue" th:text="${card.getCardValue()}">value</span>
+            <span class="cardValue" th:text="${card.getCardMessage()}">value</span>
         </div>
     </div>
 </div>
 
 
-<button th:onclick="|location.href='@{/blackjack/play/{gameId}/hit(gameId=${blackJackGame.gameId})}'|" type="button" class="return">Hit!</button>
-<button th:onclick="|location.href='@{/blackjack/play/{gameId}/stand(gameId=${blackJackGame.gameId})}'|" type="button" class="return">Stand!</button>
+<button th:if="${!isBust}" th:onclick="|location.href='@{/blackjack/play/{gameId}/hit(gameId=${blackJackGame.gameId})}'|" type="button" class="return">Hit!</button>
+<button th:if="${!isBust}" th:onclick="|location.href='@{/blackjack/play/{gameId}/stand(gameId=${blackJackGame.gameId})}'|" type="button" class="return" >Stand!</button>
+<button th:if="${isBust}" th:onclick="|location.href='@{/blackjack/play/{gameId}/hit(gameId=${blackJackGame.gameId})}'|" type="button" class="return" disabled>Hit!</button>
+<button th:if="${isBust}" th:onclick="|location.href='@{/blackjack/play}'|" type="button" class="return">Go back</button>
 </body>
 </html>
