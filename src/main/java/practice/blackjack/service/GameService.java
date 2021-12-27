@@ -30,7 +30,7 @@ public class GameService {
 	// stand
 	public void standGameById(Long gameId) {
 		BlackJackGame blackJackGame = findGameById(gameId);
-		blackJackGame.isFinished();
+		blackJackGame.checkIsFinished();
 	}
 
 	// isBust

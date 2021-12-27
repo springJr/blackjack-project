@@ -81,6 +81,13 @@ public class BlackJackController {
 		return "redirect:/blackjack/play/{gameId}";
 	}
 
+	@GetMapping("/play/{gameId}/stand")
+	public String gameEachStand(@PathVariable Long gameId) {
+		log.info("Controller: stand!");
+		gameService.standGameById(gameId);
+		return "redirect:/blackjack/play";
+	}
+
 	// 결과창
 	@GetMapping("/result")
 	public String resultPage() {

@@ -52,6 +52,7 @@ public class BlackJackGame {
     public boolean isBust() {
         int cardsSum = getCardsSum();
         if (cardsSum > 21) {
+            checkIsFinished();
             return true;
         }
         return false;
@@ -65,9 +66,10 @@ public class BlackJackGame {
         return size;
     }
 
-    public void isFinished() {
+    public void checkIsFinished() {
         this.isFinished = true;
     }
+
 
     public int getSize() {
         return cards.size();

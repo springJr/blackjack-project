@@ -11,25 +11,26 @@
         <div class="dealerCardContainer">
             <div class="dealerCard" th:each="card : ${dealerCards}">
                 <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
-                <span class="cardValue" th:text="${card.getCardValue()}">value</span>
+                <span class="cardValue" th:text="${card.getCardMessage()}">value</span>
             </div>
         </div>
     </div>
 
     <div class="player">
-        <h3 th:field="${player.userName}"></h3>
+        <h3 th:text="${player.userName}"></h3>
         <h3 th:if="${player.userSex.getDescription().equals('남성')}"> 🙆🏻‍♂️ ️</h3>
         <h3 th:if="${player.userSex.getDescription().equals('여성')}"> 🙆🏻‍♀️‍‍ ️</h3>
     </div>
 
     <div class="gameState" th:each="game : ${playerGames}">
         <div>
-            <a href="todo.html" th:text="|Game ${game.gameId}|" th:href="@{/blackjack/play/{gameId}(gameId=${game.gameId})}" >Game</a>
+            <a th:if="${!game.isFinished()}" href="todo.html" th:text="|Game ${game.gameId}|" th:href="@{/blackjack/play/{gameId}(gameId=${game.gameId})}" >Game</a>
+            <span th:if="${game.isFinished()}" th:text="|Game ${game.gameId} ✅|"></span>
         </div>
         <div class="playerCardContainer">
             <div class="playerCard" th:each="card : ${game.getCards()}">
                 <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
-                <span class="cardSymbol" th:text="${card.getCardValue()}">value</span>
+                <span class="cardSymbol" th:text="${card.getCardMessage()}">value</span>
             </div>
             <div>
                 ---------------------
@@ -37,6 +38,7 @@
         </div>
     </div>
 
-    <button th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">결과 보기</button>
+    <button th:if="${dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">딜러 카드 뽑기</button>
+    <button th:if="${!dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return" disabled>딜러 카드 뽑기</button>
 </body>
 </html>
