@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import practice.blackjack.domain.BlackJackMember;
-import practice.blackjack.domain.Dealer;
+import practice.blackjack.domain.BlackJackGame;
 import practice.blackjack.domain.Player;
 import practice.blackjack.domain.Sexs;
 import practice.blackjack.service.GameService;
@@ -50,7 +49,6 @@ public class BlackJackController {
 		log.info("| userName={}",player.getUserName());
 		log.info("| userSex={}",player.getUserSex());
 		memberService.savePlayer(player);
-		gameService.initializeGame();
 		return "redirect:/blackjack/play";
 	}
 
@@ -59,17 +57,17 @@ public class BlackJackController {
 	public String playGame(Model model) {
 		log.info("Controller: playGame");
 		// 로직
-		model.addAttribute("players",memberService.getPlayerMembers());
 		model.addAttribute("dealer",memberService.getDealer());
+		model.addAttribute("playerGames",memberService.getPlayerGames());
 		return "/blackjack/play";
 	}
 
-	@PostMapping("/play/hit")
-	public String playHit(@RequestParam("player") Player player) {
-		log.info("Controller: hit");
-		// 로직
-		gameService.hit(player); // 여기서 에러가남.. 객체를 못받아옴
-		return "redirect:/blackjack/play";
+	@GetMapping("/play/{gameId}")
+	public String gameEach(@PathVariable Long gameId, Model model) {
+		BlackJackGame blackJackGame = gameService.findGameById(gameId);
+		blackJackGame.isBlackJack();
+		model.addAttribute("blackJackGame", blackJackGame);
+		return "blackjack/gameEach";
 	}
 
 	// 결과창
