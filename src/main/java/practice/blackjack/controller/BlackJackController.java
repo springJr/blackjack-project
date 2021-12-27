@@ -70,14 +70,14 @@ public class BlackJackController {
 		blackJackGame.isBlackJack();
 		model.addAttribute("blackJackGame", blackJackGame);
 		model.addAttribute("blackJackGameCards", blackJackGame.getCards());
-		//model.addAttribute("isBust",gameService.isBustGameById(gameId));
+		model.addAttribute("isBust",gameService.isBustGameById(gameId));
 		return "blackjack/gameEach";
 	}
 
 	@GetMapping("/play/{gameId}/hit")
 	public String gameEachHit(@PathVariable Long gameId) {
-		log.info("asdfsadfasdfasdfasdf");
-		//gameService.hitGameById(gameId);
+		log.info("Controller: hit!");
+		gameService.hitGameById(gameId);
 		return "redirect:/blackjack/play/{gameId}";
 	}
 
