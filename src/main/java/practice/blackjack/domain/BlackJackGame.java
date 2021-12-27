@@ -12,6 +12,7 @@ import practice.blackjack.domain.card.CardDummy;
 @Getter
 public class BlackJackGame {
     private Long gameId;
+    private boolean isFinished = false;
     private List<Card> cards = new ArrayList<>();
 
     public void setGameId(Long gameId) {
@@ -62,6 +63,10 @@ public class BlackJackGame {
             .collect(Collectors.toList())
             .size();
         return size;
+    }
+
+    public void isFinished() {
+        this.isFinished = true;
     }
 
     public int getSize() {

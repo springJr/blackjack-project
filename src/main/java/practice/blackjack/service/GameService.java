@@ -21,20 +21,23 @@ public class GameService {
 		return gameRepository.findById(gameId);
 	}
 
-	// // hit
-	// public boolean hit(BlackJackMember member) {
-	// 	log.info("GameService: hit");
-	// 	member.addCard();
-	// 	return isBust(member);
-	// }
-	//
-	// // hit 했을 때 bust인지 확인
-	// private boolean isBust(BlackJackMember member) {
-	// 	log.info("GameService: isBust");
-	// 	log.info("| Sum={}",member.getCards().getCardsSum());
-	// 	if(member.getCards().getCardsSum()>21){
-	// 		return false;
-	// 	}
-	// 	return true;
-	// }
+	// hit
+	public void hitGameById(Long gameId) {
+		BlackJackGame blackJackGame = findGameById(gameId);
+		blackJackGame.addCard();
+	}
+
+	// stand
+	public void standGameById(Long gameId) {
+		BlackJackGame blackJackGame = findGameById(gameId);
+		blackJackGame.isFinished();
+	}
+
+	// isBust
+	public boolean isBustGameById(Long gameId) {
+		BlackJackGame blackJackGame = findGameById(gameId);
+		return blackJackGame.isBust();
+	}
+
+
 }
