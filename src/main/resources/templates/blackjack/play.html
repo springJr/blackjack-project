@@ -9,29 +9,34 @@
     <div class="dealerState">
         <h3>딜러</h3>
         <div class="dealerCardContainer">
-            <div class="dealerCard" th:each="card : ${dealer.cards.cards}">
+            <div class="dealerCard" th:each="card : ${dealerCards}">
                 <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
-                <span class="cardSymbol" th:text="${card.getCardValue()}">value</span>
+                <span class="cardValue" th:text="${card.getCardValue()}">value</span>
             </div>
         </div>
     </div>
-    <form action=".html" th:action="@{/play/hit}" method="post">
-    <div class="playerState" th:each="player : ${players}">
-        <h3 th:text="${player.userName}"> user name</h3>
+
+    <div class="player">
+        <h3 th:field="${player.userName}"></h3>
         <h3 th:if="${player.userSex.getDescription().equals('남성')}"> 🙆🏻‍♂️ ️</h3>
         <h3 th:if="${player.userSex.getDescription().equals('여성')}"> 🙆🏻‍♀️‍‍ ️</h3>
+    </div>
+
+    <div class="gameState" th:each="game : ${playerGames}">
+        <div>
+            <a href="todo.html" th:text="|Game ${game.gameId}|" th:href="@{/blackjack/play/{gameId}(gameId=${game.gameId})}" >Game</a>
+        </div>
         <div class="playerCardContainer">
-            <div class="playerCard" th:each="card : ${player.playerCards.cards}">
+            <div class="playerCard" th:each="card : ${game.getCards()}">
                 <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
                 <span class="cardSymbol" th:text="${card.getCardValue()}">value</span>
             </div>
-        </div>
-
-        <div>
-           <button type="submit" class="addTodo">HIT!</button>
+            <div>
+                ---------------------
+            </div>
         </div>
     </div>
-    </form>
+
     <button th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">결과 보기</button>
 </body>
 </html>
