@@ -30,7 +30,7 @@ public class GameService {
 	// stand
 	public void standGameById(Long gameId) {
 		BlackJackGame blackJackGame = findGameById(gameId);
-		blackJackGame.isFinished();
+		blackJackGame.checkIsFinished();
 	}
 
 	// isBust
@@ -39,5 +39,13 @@ public class GameService {
 		return blackJackGame.isBust();
 	}
 
+	public boolean allGameFinished() {
+		for (BlackJackGame game : gameRepository.findAllGames()) {
+			if (!game.isFinished()){
+				return false;
+			}
+		}
+		return true;
+	}
 
 }
