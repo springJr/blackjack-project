@@ -33,6 +33,5 @@ public class MemberService {
 
 	public List<BlackJackGame> getPlayerGames() {
 		return gameRepository.findAllGames();
-
 	}
 }
