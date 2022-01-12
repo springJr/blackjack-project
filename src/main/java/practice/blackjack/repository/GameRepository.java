@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import lombok.Getter;
-import practice.blackjack.domain.BlackJackGame;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.domain.Player;
 
 @Getter
@@ -18,6 +18,7 @@ public class GameRepository {
 	private BlackJackGame dealerGame;
 	private Map<Long, BlackJackGame> gameRepository = new HashMap<>();
 
+	// 플레이어 객체를 저장
 	public void savePlayer(Player player) {
 		this.player = player;
 		this.dealerGame = new BlackJackGame();
@@ -25,6 +26,7 @@ public class GameRepository {
 		addGamesByAmount(player.getGameAmount());
 	}
 
+	// 게임
 	private void addGamesByAmount(int amount) {
 		Long id = 1L;
 		for (int i = 0; i < amount; i++) {
@@ -44,5 +46,8 @@ public class GameRepository {
 		return new ArrayList<>(gameRepository.values());
 	}
 
-	
+	public void clearData() {
+		gameRepository.clear();
+		this.dealerGame = new BlackJackGame();
+	}
 }

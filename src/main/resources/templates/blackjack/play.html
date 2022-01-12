@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <button th:if="${dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">딜러 카드 뽑기</button>
-    <button th:if="${!dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return" disabled>딜러 카드 뽑기</button>
+    <button th:if="${dealerTurn}" th:onclick="|location.href='@{/blackjack/dealer/draw}'|" type="button" class="return">딜러 카드 뽑기</button>
+    <button th:if="${!dealerTurn}" th:onclick="|location.href='@{/blackjack/dealer/draw}'|" type="button" class="return" disabled>딜러 카드 뽑기</button>
 </body>
 </html>

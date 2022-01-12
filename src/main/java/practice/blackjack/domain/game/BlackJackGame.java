@@ -1,4 +1,4 @@
-package practice.blackjack.domain;
+package practice.blackjack.domain.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ public class BlackJackGame {
     private Long gameId;
     private boolean isFinished = false;
     private List<Card> cards = new ArrayList<>();
+    private GameResult gameResult;
 
     public void setGameId(Long gameId) {
         this.gameId = gameId;
@@ -33,7 +34,7 @@ public class BlackJackGame {
 
     // 블랙잭인지 확인
     public boolean isBlackJack() {
-        if(getCardsSum() == 21){
+        if (getCardsSum() == 21) {
             return true;
         }
         return false;
@@ -49,11 +50,13 @@ public class BlackJackGame {
         cards.add(card);
     }
 
+    // !-- Bust의 유무만 판단하는 메서드 추출 필요
     public boolean isBust() {
         int cardsSum = getCardsSum();
         if (cardsSum > 21) {
             checkIsFinished();
             this.isFinished = true;
+            this.gameResult = GameResult.Lose;
             return true;
         }
         return false;
@@ -71,8 +74,22 @@ public class BlackJackGame {
         this.isFinished = true;
     }
 
-
     public int getSize() {
         return cards.size();
+    }
+
+    public void winGame() {
+        this.gameResult = GameResult.Win;
+    }
+
+    public void setGameResultByDealer(int dealerSum) {
+        int cardsSum = getCardsSum();
+        if (dealerSum > cardsSum) {
+            this.gameResult = GameResult.Lose;
+        } else if (dealerSum == cardsSum) {
+            this.gameResult = GameResult.Draw;
+        } else if (dealerSum < cardsSum) {
+            this.gameResult = GameResult.Win;
+        }
     }
 }

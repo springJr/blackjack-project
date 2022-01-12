@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Result</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Result!</h1>
+<h1>Play!</h1>
 <div class="dealerState">
     <h3>딜러</h3>
     <div class="dealerCardContainer">
@@ -24,20 +24,23 @@
 
 <div class="gameState" th:each="game : ${playerGames}">
     <div>
-        <span th:text="|Game ${game.gameId}|">Game</span>
-        <span th:text="${game.getGameResult().getResultKorean()}"></span>
+        <a th:if="${!game.isFinished()}" href="todo.html" th:text="|Game ${game.gameId}|" th:href="@{/blackjack/play/{gameId}(gameId=${game.gameId})}" >Game</a>
+        <span th:if="${game.isFinished()}" th:text="|Game ${game.gameId} ✅|"></span>
     </div>
     <div class="playerCardContainer">
         <div class="playerCard" th:each="card : ${game.getCards()}">
             <span class="cardSymbol" th:text="${card.getCardSymbol()}">symbol</span>
             <span class="cardSymbol" th:text="${card.getCardMessage()}">value</span>
         </div>
+        <div>
+            ---------------------
+        </div>
     </div>
 </div>
-<div>
-    <button th:onclick="|location.href='@{/blackjack/main/reset}'|" type="button" class="return">Back</button>
-</div>
 
-
+<button th:if="${dealerTurn}" th:onclick="|location.href='@{/blackjack/dealer/draw}'|" type="button" class="return">딜러 카드 뽑기</button>
+<button th:if="${!dealerTurn}" th:onclick="|location.href='@{/blackjack/dealer/draw}'|" type="button" class="return" disabled>딜러 카드 뽑기</button>
+<button th:if="${!dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return">결과 보기</button>
+<button th:if="${dealerTurn}" th:onclick="|location.href='@{/blackjack/result}'|" type="button" class="return" disabled>결과 보기</button>
 </body>
 </html>
