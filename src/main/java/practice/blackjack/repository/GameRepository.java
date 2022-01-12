@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import lombok.Getter;
-import practice.blackjack.domain.BlackJackGame;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.domain.Player;
 
 @Getter

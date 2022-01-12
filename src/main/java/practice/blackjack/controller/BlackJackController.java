@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import practice.blackjack.domain.BlackJackGame;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.domain.Player;
 import practice.blackjack.domain.Sexs;
 import practice.blackjack.service.GameService;
@@ -89,10 +89,18 @@ public class BlackJackController {
 		return "redirect:/blackjack/play";
 	}
 
-	// 결과창
+	//결과창
 	@GetMapping("/result")
-	public String resultPage() {
+	public String resultPage(Model model) {
+		// 로직
 		log.info("Controller: resultPage");
+		memberService.ExecuteGameResult();
+
+		model.addAttribute("dealerCards",memberService.getDealer().getCards());
+		model.addAttribute("player",memberService.getPlayer());
+		model.addAttribute("playerGames",memberService.getPlayerGames());
+		model.addAttribute("dealerTurn", gameService.allGameFinished());
+
 		return "/blackjack/result";
 	}
 
