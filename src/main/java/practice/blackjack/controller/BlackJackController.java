@@ -27,6 +27,7 @@ public class BlackJackController {
 		this.memberService = memberService;
 	}
 
+
 	// 메인페이지
 	@GetMapping("/main")
 	public String mainPage() {
@@ -43,6 +44,7 @@ public class BlackJackController {
 		return "/blackjack/form";
 	}
 
+	// 유저 추가
 	@PostMapping("/user")
 	public String addUser(@ModelAttribute Player player) {
 		log.info("Controller: userForm-post");
@@ -52,7 +54,7 @@ public class BlackJackController {
 		memberService.savePlayer(player);
 		return "redirect:/blackjack/play";
 	}
-
+	// ------------------ 전체적인 게임 페이지 ------------------
 	// 게임진행
 	@GetMapping("/play")
 	public String playGame(Model model) {
@@ -65,6 +67,8 @@ public class BlackJackController {
 		return "/blackjack/play";
 	}
 
+	// ------------------ 1게임 관련 ------------------
+	// 1게임 진행
 	@GetMapping("/play/{gameId}")
 	public String gameEach(@PathVariable Long gameId, Model model) {
 		BlackJackGame blackJackGame = gameService.findGameById(gameId);
@@ -75,6 +79,7 @@ public class BlackJackController {
 		return "blackjack/gameEach";
 	}
 
+	// 1게임 진행 (hit)
 	@GetMapping("/play/{gameId}/hit")
 	public String gameEachHit(@PathVariable Long gameId) {
 		log.info("Controller: hit!");
@@ -82,6 +87,7 @@ public class BlackJackController {
 		return "redirect:/blackjack/play/{gameId}";
 	}
 
+	// 1게임 진행 (stand)
 	@GetMapping("/play/{gameId}/stand")
 	public String gameEachStand(@PathVariable Long gameId) {
 		log.info("Controller: stand!");
@@ -89,7 +95,25 @@ public class BlackJackController {
 		return "redirect:/blackjack/play";
 	}
 
-	// 결과창
+	// ------------------ 딜러 턴 ------------------
+	@GetMapping("/dealer/page")
+	public String dealerTurn(Model model) {
+		log.info("Controller: dealerTurn");
+		model.addAttribute("dealerCards",memberService.getDealer().getCards());
+		model.addAttribute("player",memberService.getPlayer());
+		model.addAttribute("playerGames",memberService.getPlayerGames());
+		model.addAttribute("dealerTurn", gameService.dealerTurnFinished());
+		return "/blackjack/dealerTurn";
+	}
+
+	@GetMapping("/dealer/draw")
+	public String dealerDraw() {
+		log.info("Controller: dealerDraw");
+		gameService.hitDealer();
+		return "redirect:/blackjack/dealer/page";
+	}
+
+	// ------------------ 결과창 ------------------
 	@GetMapping("/result")
 	public String resultPage() {
 		log.info("Controller: resultPage");
@@ -102,5 +126,7 @@ public class BlackJackController {
 		log.info("Controller: rulePage");
 		return "/blackjack/rule";
 	}
+
+
 
 }
