@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.domain.Player;
-import practice.blackjack.domain.game.GameResult;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.repository.GameRepository;
 
 @Slf4j
@@ -35,6 +34,10 @@ public class MemberService {
 	}
 	public Player getPlayer() {
 		return gameRepository.getPlayer();
+	}
+
+	public void clearData() {
+		gameRepository.clearData();
 	}
 
 	// if 딜러가 버스트인 경우, 살아남은 모든 게임은 이김

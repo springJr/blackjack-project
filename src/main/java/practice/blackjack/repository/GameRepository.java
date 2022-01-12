@@ -44,5 +44,8 @@ public class GameRepository {
 		return new ArrayList<>(gameRepository.values());
 	}
 
-	
+	public void clearData() {
+		gameRepository.clear();
+		this.dealerGame = new BlackJackGame();
+	}
 }

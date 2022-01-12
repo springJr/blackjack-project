@@ -111,4 +111,13 @@ public class BlackJackController {
 		return "/blackjack/rule";
 	}
 
+	@GetMapping("/main/reset")
+	public String resetData() {
+		log.info("Controller: resetData");
+
+		memberService.clearData();
+
+		return "/blackjack/index";
+	}
+
 }
