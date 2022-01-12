@@ -14,6 +14,7 @@ public class BlackJackGame {
     private Long gameId;
     private boolean isFinished = false;
     private List<Card> cards = new ArrayList<>();
+    private boolean win = false;
 
     public void setGameId(Long gameId) {
         this.gameId = gameId;
