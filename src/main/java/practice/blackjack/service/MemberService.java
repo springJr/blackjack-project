@@ -1,15 +1,13 @@
 package practice.blackjack.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import practice.blackjack.domain.BlackJackGame;
 import practice.blackjack.domain.Player;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.repository.GameRepository;
 
 @Slf4j
@@ -36,5 +34,34 @@ public class MemberService {
 	}
 	public Player getPlayer() {
 		return gameRepository.getPlayer();
+	}
+
+	public void clearData() {
+		gameRepository.clearData();
+	}
+
+	// if 딜러가 버스트인 경우, 살아남은 모든 게임은 이김
+	// else 비교 수행
+	public void ExecuteGameResult() {
+		BlackJackGame dealerGame = gameRepository.getDealerGame();
+		List<BlackJackGame> allGames = gameRepository.findAllGames();
+
+		if (dealerGame.isBust()) {
+			allGamesWinner(allGames);
+			return;
+		}
+
+		int dealerSum = dealerGame.getCardsSum();
+		for (BlackJackGame gameEach : allGames) {
+			gameEach.setGameResultByDealer(dealerSum);
+		}
+	}
+
+	private void allGamesWinner(List<BlackJackGame> games) {
+		for (BlackJackGame game : games) {
+			if (!game.isBust()) {
+				game.winGame();
+			}
+		}
 	}
 }

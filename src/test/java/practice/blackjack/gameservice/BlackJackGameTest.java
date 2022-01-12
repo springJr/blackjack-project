@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import practice.blackjack.domain.BlackJackGame;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.domain.card.Card;
 import practice.blackjack.domain.card.CardSymbol;
 import practice.blackjack.domain.card.CardValue;

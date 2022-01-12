@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import practice.blackjack.domain.BlackJackGame;
+import practice.blackjack.domain.game.BlackJackGame;
 import practice.blackjack.repository.GameRepository;
 
 @Slf4j
